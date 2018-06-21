@@ -8,13 +8,11 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 
-
 @Configuration
 @EnableResourceServer
-public class ResourceServerConfiguration extends
-        ResourceServerConfigurerAdapter {
-	
-	@Value("${security.oauth2.client.resource-ids}")
+public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+
+    @Value("${security.oauth2.client.resource-ids}")
     private String RESOURCE_ID;
 
     @Override
@@ -24,12 +22,7 @@ public class ResourceServerConfiguration extends
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers()
-                .antMatchers("/**")
-                .and()
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated()
+        http.requestMatchers().antMatchers("/**").and().authorizeRequests().anyRequest().authenticated()
                 .antMatchers(HttpMethod.GET, "/**").access("#oauth2.hasScope('read')")
                 .antMatchers(HttpMethod.OPTIONS, "/**").access("#oauth2.hasScope('read')")
                 .antMatchers(HttpMethod.POST, "/**").access("#oauth2.hasScope('write')")
