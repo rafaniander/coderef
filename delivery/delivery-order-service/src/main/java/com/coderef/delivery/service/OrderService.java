@@ -1,5 +1,7 @@
 package com.coderef.delivery.service;
 
+import java.util.Optional;
+
 import com.coderef.delivery.model.Order;
 import com.coderef.delivery.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,8 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public Order findById(Integer id){
-        // return orderRepository.findById(id);
-        return orderRepository.findOne(id);
+    public Optional<Order> findById(Integer id){
+        return orderRepository.findById(id);
     }
 
     public Iterable<Order> findAll(){
@@ -26,7 +27,6 @@ public class OrderService {
     }
 
     public void delete(Integer id) {
-        // orderRepository.deleteById(id);
-        orderRepository.delete(id);
+        orderRepository.deleteById(id);
     }
 }

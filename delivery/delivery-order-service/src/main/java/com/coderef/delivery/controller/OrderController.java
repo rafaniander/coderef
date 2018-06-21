@@ -1,5 +1,7 @@
 package com.coderef.delivery.controller;
 
+import java.util.Optional;
+
 import com.coderef.delivery.model.Order;
 import com.coderef.delivery.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,11 @@ public class OrderController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Order> save(@RequestBody Order order) {
-        System.out.println("Entrou no método salvar!");
         return ResponseEntity.ok(orderService.save(order));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Order> findById(@PathVariable("id") Integer id) {
+    public ResponseEntity<Optional<Order>> findById(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(orderService.findById(id));
     }
 
