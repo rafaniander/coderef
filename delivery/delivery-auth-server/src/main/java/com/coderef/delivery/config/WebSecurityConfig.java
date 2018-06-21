@@ -1,7 +1,6 @@
 package com.coderef.delivery.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -16,7 +15,7 @@ import com.coderef.delivery.service.UserDetailsService;
 
 @Configuration
 @EnableWebSecurity(debug = true)
-@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+@Order(2147483640)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
